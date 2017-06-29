@@ -17,44 +17,40 @@
 <body>
     <nav class="navbar techfont">
         <div class="container">
-            <ul>
-                <li>
-                    <a class="navbar-brand bigbrand" href="{% url 'post_list' %}"></a>
-                </li>
-                <li>
-                    <a href="{% url 'about' %}"></a>
-                </li>
-                <li><a href="www.github.com">Github</a></li>
-                <li>
-                    <a href="www.linkedin.com"></a>
-                </li>
+            <ul class="nav navbar-nav">
+                <li><a class='navbar-brand bigbrand' href="{% url 'post_list' %}">My Tech blog</a></li>
+                <li><a href="{% url 'about_view'%}">About</a></li>
+                <li><a href="https://www.github.com">Github</a></li>
+                <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>
-                    <a href={% url 'post_new' %}>New Post</a>
+                    <a href="{% url 'create_post' %}">New Post</a>
                 </li>
                 <li>
-                    <a href={% url 'post_draft_list' %}>Drafts</a>
+                    <a href="{% url 'draft' %}">Drafts</a>
                 </li>
                 <li>
-                    <a href={% url 'logout' %}>Log Out</a>
+                    <a href="{% url 'logout' %}">Log Out</a>
                 </li>
                 <li>
-                    <a>Welcome: {{username}}</a>
+                    <a>Welcome: {{user.username}}</a>
                 </li>
                 {% else %}
                 <li><a href={% url 'login' %} class="nav navabar-right"><span class="glyphicon glyphicon-user"></span></a></li>
                 {% endif %}
             </ul>
+
         </div>
+
     </nav>
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
-            	{% block content %}
-            		
-            	{% endblock content %}
+                {% block content %} {% endblock content %}
             </div>
         </div>
     </div>
